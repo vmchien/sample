@@ -39,6 +39,20 @@ public class GreetingHandler {
         }
     }
 
+    public Mono<ServerResponse> sendKafka1(ServerRequest request) {
+        try {
+            log.info("send kafka 1");
+            for (int i = 0; i < 10; i++) {
+                kafkaProducerService.sendMessage(Topic.SHOP_V2,  "C: "+i);
+            }
+            return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromValue(new Greeting("Hello, Spring!")));
+        } catch (Exception e) {
+            return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromValue(new Greeting("Hello, ERROR!")));
+        }
+    }
+
     public Mono<ServerResponse> hola(ServerRequest request) {
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromValue(client.getEmployeeMono()));

@@ -17,6 +17,6 @@ public class GreetingRouter {
     public RouterFunction<ServerResponse> route(GreetingHandler greetingHandler) {
         return RouterFunctions
                 .route(GET("/hello").and(accept(MediaType.APPLICATION_JSON)), greetingHandler::sendKafka)
-                .andRoute(GET("/hola").and(accept(MediaType.APPLICATION_JSON)), greetingHandler::hola);
+                .andRoute(GET("/hola").and(accept(MediaType.APPLICATION_JSON)), greetingHandler::sendKafka1);
     }
 }

@@ -18,7 +18,7 @@ public class SimpleKafkaListeners {
 
     private final ObjectMapper objectMapper;
 
-    @KafkaListener(id = Topic.SHOP_V1, topics = Topic.SHOP_V1, containerFactory = "kafkaBatchListenerContainerFactory")
+    @KafkaListener(id = Topic.SHOP_V1, topics = {Topic.SHOP_V1, Topic.SHOP_V2}, containerFactory = "kafkaBatchListenerContainerFactory")
     public void listenTripOrder(List<String> messages, @Header(KafkaHeaders.RECEIVED_PARTITION_ID) List<Integer> partitions) {
 
         for (int i = 0; i < messages.size(); i++) {
