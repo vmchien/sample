@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:6.2-alpine
+    command: redis-server --requirepass password
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    environment:
+      REDIS_PASSWORD: password
+
+volumes:
+  redis-data:
+
