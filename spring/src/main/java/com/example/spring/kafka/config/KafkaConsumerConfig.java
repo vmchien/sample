@@ -1,6 +1,8 @@
 package com.example.spring.kafka.config;
 
+import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,6 +15,7 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 @EnableKafka
 @Configuration
@@ -45,6 +48,14 @@ public class KafkaConsumerConfig {
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         return props;
+    }
+
+    public Consumer<String, String> getConsumer() {
+        Properties properties = new Properties();
+        var r = getBasicConsumerConfigs();
+        r.put(ConsumerConfig.GROUP_ID_CONFIG, "ss");
+        properties.putAll(r);
+        return new KafkaConsumer<>(properties);
     }
 
     @Bean
