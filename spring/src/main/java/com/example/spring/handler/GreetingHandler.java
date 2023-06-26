@@ -31,9 +31,9 @@ public class GreetingHandler {
     public Mono<ServerResponse> sendKafka(ServerRequest request) {
         try {
             log.info("send kafka");
-            for (int i = 0; i < 10; i++) {
-                kafkaProducerService.sendMessage(Topic.SHOP_V1, i);
-            }
+//            for (int i = 0; i < 10; i++) {
+                kafkaProducerService.sendMessage(Topic.SHOP_V1, "hello");
+//            }
             return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                     .body(BodyInserters.fromValue(new Greeting("Hello, Spring!")));
         } catch (Exception e) {
