@@ -1,0 +1,17 @@
+
+D
+java:S1172".Remove this unused method parameter "request".(ú€€“
+t
+java:S2142'"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(”ı¾
+V	java:S125""<This block of commented-out lines of code should be removed.(ĞÔªşÿÿÿÿ
+V	java:S125$"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ
+D
+java:S1172-".Remove this unused method parameter "request".(ªŠ ş
+t
+java:S21425"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(”ı¾
+I
+java:S1172;".Remove this unused method parameter "request".(œ„×îùÿÿÿÿ
+B
+java:S1874F",Remove this use of "poll"; it is deprecated.(€»Õ†
+U
+java:S6213G":Rename this variable to not match a restricted identifier.(å‡¹Œıÿÿÿÿ

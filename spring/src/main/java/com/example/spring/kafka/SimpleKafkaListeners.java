@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
+import org.springframework.messaging.handler.annotation.Payload;
 
 import java.util.List;
 
@@ -37,12 +38,9 @@ public class SimpleKafkaListeners {
     }
 
     @KafkaListener(id = "nam", topics = {Topic.SHOP_V1}, groupId = "CHIEN", containerFactory = "kafkaBatchListenerContainerFactory")
-    public void listenTripOrder2(List<String> messages, @Header(KafkaHeaders.RECEIVED_PARTITION_ID) List<Integer> partitions) {
+    public void listenTripOrder2(@Payload String messages, @Header(KafkaHeaders.RECEIVED_PARTITION_ID) Integer partitions) {
         log.info("nam");
-        for (int i = 0; i < messages.size(); i++) {
-            String message = messages.get(i);
-            log.info(" GROUP {}: {}", partitions.get(i), message);
-        }
+        log.info(" GROUP {}: {}", partitions, messages);
     }
 
     @KafkaListener(id = "minh", topics = {Topic.SHOP_V1}, groupId = "CHIEN", containerFactory = "kafkaBatchListenerContainerFactory")
