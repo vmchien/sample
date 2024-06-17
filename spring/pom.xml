@@ -53,6 +53,12 @@
 			<artifactId>flickr4java</artifactId>
 			<version>3.0.8</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.zalando.stups/async-spring-boot-starter -->
+		<dependency>
+			<groupId>org.zalando.stups</groupId>
+			<artifactId>async-spring-boot-starter</artifactId>
+			<version>0.6.2</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.testng</groupId>

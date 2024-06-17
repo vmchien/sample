@@ -3,8 +3,8 @@ package com.example.spring.handler;
 import com.example.spring.kafka.SimpleKafkaProducerService;
 import com.example.spring.kafka.Topic;
 import com.example.spring.kafka.config.KafkaConsumerConfig;
-import com.example.spring.service.EmployeeWebClient;
 import com.example.spring.model.Greeting;
+import com.example.spring.service.EmployeeWebClient;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -27,6 +27,7 @@ public class GreetingHandler {
     public final EmployeeWebClient client;
     public final SimpleKafkaProducerService kafkaProducerService;
     public final KafkaConsumerConfig kafkaConsumerConfig;
+    public final TestService testService;
 
     public Mono<ServerResponse> sendKafka(ServerRequest request) {
         try {
@@ -83,4 +84,13 @@ public class GreetingHandler {
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromValue(result));
     }
+
+    public Mono<ServerResponse> test(ServerRequest request) {
+        long time = System.currentTimeMillis();
+        System.out.println(System.currentTimeMillis() - time);
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                .body(BodyInserters.fromValue(new Greeting("Hello, ERROR!")));
+    }
+
+
 }
